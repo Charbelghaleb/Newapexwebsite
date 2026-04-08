@@ -1,0 +1,63 @@
+# Apex Prometheus AI - llms.txt
+# AI Consulting for Small and Mid-Size Businesses
+
+## About
+Apex Prometheus is an AI consulting firm specializing in helping small and mid-size service businesses — particularly trades businesses like painters, plumbers, electricians, HVAC techs, roofers, and general contractors — adopt AI tools and build lean operations.
+
+## Founder
+Stan "Slao" LoMonaco — a hands-on business owner who runs a successful construction and painting company in Staten Island, NY. He built his own lean operation using AI and agentic workflows before founding Apex Prometheus.
+
+## Locations
+- Staten Island, NY
+- Tampa, FL
+
+## Contact
+- Email: info@apexprometheus.ai
+- Phone: (718) 603-1726
+
+## Services
+
+### Tier 1: AI Foundations ($1.5K-$3K, 2-4 weeks)
+For businesses new to AI. Includes AI readiness assessment, tool recommendations, custom SOPs, and team training. Expected ROI: 2-3x in Year 1.
+
+### Tier 2: Workflow Automation ($3K-$10K, 4-8 weeks)
+Automates core workflows and integrates systems. Includes workflow analysis, system integrations (CRM, PM, etc.), custom automation for 3 processes, and AI-assisted operations. Expected ROI: 3-5x in Year 1.
+
+### Tier 3: Agentic AI ($10K-$30K+, 8-16 weeks)
+Full business transformation. Includes business process re-engineering, custom AI agent development, autonomous workflows, and lean-office transformation. Expected ROI: 5-10x in Year 1.
+
+### Ongoing Support & Advisory (Starting at $980/month)
+Retainer for ongoing support, maintenance, and advisory services with priority access and monthly strategy sessions.
+
+## Free Tools
+
+### AI Visibility Score Tool
+Free diagnostic tool that analyzes whether AI platforms like ChatGPT, Perplexity, and Google AI Overview recommend your business. Provides instant scoring across:
+- Overall AI Visibility Score (0-100)
+- Platform-specific presence (ChatGPT, Perplexity, Google AI)
+- Local SEO strength
+- Website health
+- Review presence
+- Content authority
+Includes specific issues found and actionable fixes. Takes 60 seconds. No credit card required.
+URL: https://apexprometheus.ai/ai-visibility-score
+
+## Key Pages
+- Homepage: https://apexprometheus.ai/
+- AI Visibility Score Tool: https://apexprometheus.ai/ai-visibility-score
+- Blog: https://apexprometheus.ai/blog
+- The Blue Collar AI Manifesto: https://apexprometheus.ai/manifesto
+- AI Discovery Whitepaper: https://apexprometheus.ai/whitepaper
+
+## Blog Articles
+- The AI Boom Is Coming for Service Businesses: https://apexprometheus.ai/blog/ai-boom-service-businesses-2026
+- AEO for Service Businesses: https://apexprometheus.ai/blog/aeo-for-service-businesses
+- AI Won't Replace Tradespeople: https://apexprometheus.ai/blog/ai-wont-replace-tradespeople
+- GEO Strategy for Trades Businesses: https://apexprometheus.ai/blog/geo-strategy-trades-businesses-2026
+
+## Specializations
+- AI Visibility Optimization
+- Answer Engine Optimization (AEO)
+- Generative Engine Optimization (GEO)
+- AI-powered workflow automation for trades businesses
+- Lean operations consulting

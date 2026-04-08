@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #0A0A0F;
+  --steel: #12121E;
+  --panel: #161625;
+  --plasma: #00E5FF;
+  --fire: #FF6B00;
+  --fire-hot: #FFAA00;
+  --text: #E0E0EC;
+  --text-dim: #6A6A8A;
+  --border-color: #252540;
+  --glow-plasma: rgba(0, 229, 255, 0.4);
+  --glow-fire: rgba(255, 107, 0, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--plasma); }
+
+/* Utility: clip-path card */
+.card-clip {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+/* Utility: fire gradient text */
+.text-fire-gradient {
+  background: linear-gradient(135deg, var(--fire) 0%, var(--fire-hot) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Utility: plasma gradient text */
+.text-plasma-gradient {
+  background: linear-gradient(135deg, var(--plasma) 0%, #00b8d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer animation for featured tier top border */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-border {
+  background: linear-gradient(90deg, var(--fire), var(--fire-hot), var(--fire), var(--fire-hot), var(--fire));
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Float animation for logo */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(255, 107, 0, 0.6)) drop-shadow(0 0 40px rgba(255, 170, 0, 0.3)); }
+  50% { filter: drop-shadow(0 0 35px rgba(255, 107, 0, 0.9)) drop-shadow(0 0 70px rgba(255, 170, 0, 0.5)); }
+}
+
+.logo-float {
+  animation: float 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
+}
+
+/* FadeUp for hero elements */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up-1 { animation: fadeUp 0.8s ease forwards; animation-delay: 0.2s; opacity: 0; }
+.fade-up-2 { animation: fadeUp 0.8s ease forwards; animation-delay: 0.4s; opacity: 0; }
+.fade-up-3 { animation: fadeUp 0.8s ease forwards; animation-delay: 0.6s; opacity: 0; }
+.fade-up-4 { animation: fadeUp 0.8s ease forwards; animation-delay: 0.8s; opacity: 0; }
+.fade-up-5 { animation: fadeUp 0.8s ease forwards; animation-delay: 1.0s; opacity: 0; }
+
+/* Nav dashed border gradient */
+@keyframes navBorderScroll {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
+/* Section label line */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--plasma);
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--plasma);
+}
+
+/* Mobile nav */
+@media (max-width: 768px) {
+  .hidden-mobile {
+    display: none !important;
+  }
+  .show-mobile {
+    display: flex !important;
+  }
+}
+@media (min-width: 769px) {
+  .show-mobile {
+    display: none !important;
+  }
+}
+
+/* Pulse animation for Scene7 nodes */
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1.0; }
+}
+
+/* Loading bar pulse */
+@keyframes loadPulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1.0; }
+  100% { opacity: 0.4; }
+}
+
+/* Tier card shimmer on top */
+.tier-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--fire), var(--fire-hot), var(--fire), var(--fire-hot), var(--fire));
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
+}

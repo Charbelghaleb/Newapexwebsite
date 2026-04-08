@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c \"where npm 2>&1 & where node 2>&1\")",
+      "Bash(powershell.exe -NoProfile -Command ':*)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" --version)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" \"C:\\\\Program Files\\\\nodejs\\\\node_modules\\\\typescript\\\\bin\\\\tsc\" --noEmit)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" \"node_modules\\\\typescript\\\\bin\\\\tsc\" --noEmit)",
+      "Bash(\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" screenshot.mjs http://localhost:5173 hero)",
+      "Read(//c/Users/nateh/AppData/Local/Temp/**)",
+      "Read(//c/Users/User/AppData/Local/Temp/**)"
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Flame gradient: dark red base to orange/gold top -->
+    <linearGradient id="flameGrad" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#8B2500"/>
+      <stop offset="35%" stop-color="#B33A00"/>
+      <stop offset="65%" stop-color="#D4700A"/>
+      <stop offset="100%" stop-color="#E8941A"/>
+    </linearGradient>
+    <!-- Darker gradient for inner flame -->
+    <linearGradient id="flameGradDark" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#6B1A00"/>
+      <stop offset="50%" stop-color="#993300"/>
+      <stop offset="100%" stop-color="#CC6600"/>
+    </linearGradient>
+    <!-- Circuit line gradient -->
+    <linearGradient id="circuitGrad" x1="0.5" y1="1" x2="0.5" y2="0">
+      <stop offset="0%" stop-color="#7A2000"/>
+      <stop offset="100%" stop-color="#CC7A1A"/>
+    </linearGradient>
+    <clipPath id="flameClip">
+      <path d="M512 160
+        C512 160, 560 220, 580 260
+        Q610 310, 635 350
+        C660 390, 685 420, 700 460
+        Q720 510, 725 540
+        C735 590, 730 640, 720 680
+        Q710 720, 690 750
+        C665 800, 630 830, 590 850
+        Q560 865, 530 870
+        C515 875, 500 875, 485 870
+        Q455 865, 430 850
+        C390 830, 355 800, 330 750
+        Q310 720, 300 680
+        C290 640, 285 590, 295 540
+        Q300 510, 320 460
+        C335 420, 360 390, 385 350
+        Q410 310, 435 260
+        C455 220, 512 160, 512 160Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Binary text circle -->
+  <g fill="none">
+    <path id="textCircle" d="M512,112 a400,400 0 1,1 -0.01,0" fill="none"/>
+    <text font-family="monospace" font-size="18" fill="#1a1a1a" letter-spacing="2">
+      <textPath href="#textCircle">01011011010110110101110001011100010101011 0101101010111000101110001βεdr σntΔΞ31 3β5ΔΛ110Rd0110101Δβ65Ξ30110001 11Ξ1DA5Δ6Ξ3β10000101 10100001011 01011001011101011001010100 010110101011100100010101 0111010110100101010111100011101010111</textPath>
+    </text>
+  </g>
+
+  <!-- Main flame shape - outer -->
+  <path d="M512 155
+    C512 155, 448 230, 425 275
+    Q395 330, 370 370
+    C345 415, 320 455, 305 505
+    Q288 560, 290 600
+    C292 655, 305 710, 335 755
+    Q365 800, 405 835
+    C445 865, 480 878, 512 880
+    C544 878, 575 865, 615 835
+    Q655 800, 685 755
+    C715 710, 728 655, 730 600
+    Q732 560, 715 505
+    C700 455, 675 415, 650 370
+    Q625 330, 595 275
+    C572 230, 512 155, 512 155Z"
+    fill="url(#flameGrad)" stroke="url(#circuitGrad)" stroke-width="3"/>
+
+  <!-- Inner flame left -->
+  <path d="M460 400
+    C460 400, 430 450, 415 490
+    Q400 530, 395 560
+    C390 600, 395 640, 410 675
+    Q425 710, 450 735
+    C470 750, 485 755, 500 750
+    Q490 740, 480 720
+    C465 690, 455 660, 450 625
+    Q445 590, 450 555
+    C455 520, 465 490, 460 400Z"
+    fill="url(#flameGradDark)" stroke="url(#circuitGrad)" stroke-width="2"/>
+
+  <!-- Inner flame right -->
+  <path d="M564 400
+    C564 400, 590 450, 605 490
+    Q620 530, 625 560
+    C630 600, 625 640, 610 675
+    Q595 710, 570 735
+    C550 750, 535 755, 520 750
+    Q530 740, 540 720
+    C555 690, 565 660, 570 625
+    Q575 590, 570 555
+    C565 520, 555 490, 564 400Z"
+    fill="url(#flameGradDark)" stroke="url(#circuitGrad)" stroke-width="2"/>
+
+  <!-- Inner flame center -->
+  <path d="M512 280
+    C512 280, 495 330, 488 370
+    Q480 410, 478 440
+    C476 475, 480 510, 490 545
+    Q500 575, 512 600
+    Q524 575, 534 545
+    C544 510, 548 475, 546 440
+    Q544 410, 536 370
+    C529 330, 512 280, 512 280Z"
+    fill="url(#flameGradDark)" stroke="url(#circuitGrad)" stroke-width="2"/>
+
+  <!-- Circuit traces - vertical main stem -->
+  <line x1="512" y1="250" x2="512" y2="800" stroke="url(#circuitGrad)" stroke-width="2.5" opacity="0.9"/>
+
+  <!-- Circuit traces - horizontal branches -->
+  <line x1="380" y1="500" x2="644" y2="500" stroke="url(#circuitGrad)" stroke-width="2" opacity="0.8"/>
+  <line x1="400" y1="560" x2="624" y2="560" stroke="url(#circuitGrad)" stroke-width="2" opacity="0.8"/>
+  <line x1="410" y1="620" x2="614" y2="620" stroke="url(#circuitGrad)" stroke-width="2" opacity="0.8"/>
+  <line x1="430" y1="680" x2="594" y2="680" stroke="url(#circuitGrad)" stroke-width="2" opacity="0.8"/>
+  <line x1="455" y1="740" x2="569" y2="740" stroke="url(#circuitGrad)" stroke-width="2" opacity="0.8"/>
+
+  <!-- Circuit traces - diagonal branches left -->
+  <line x1="512" y1="350" x2="420" y2="440" stroke="url(#circuitGrad)" stroke-width="1.8" opacity="0.7"/>
+  <line x1="512" y1="400" x2="390" y2="510" stroke="url(#circuitGrad)" stroke-width="1.8" opacity="0.7"/>
+  <line x1="460" y1="500" x2="410" y2="580" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="440" y1="560" x2="420" y2="650" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Circuit traces - diagonal branches right -->
+  <line x1="512" y1="350" x2="604" y2="440" stroke="url(#circuitGrad)" stroke-width="1.8" opacity="0.7"/>
+  <line x1="512" y1="400" x2="634" y2="510" stroke="url(#circuitGrad)" stroke-width="1.8" opacity="0.7"/>
+  <line x1="564" y1="500" x2="614" y2="580" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="584" y1="560" x2="604" y2="650" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- Circuit traces - secondary horizontals -->
+  <line x1="430" y1="440" x2="594" y2="440" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.6"/>
+  <line x1="445" y1="380" x2="579" y2="380" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="465" y1="320" x2="559" y2="320" stroke="url(#circuitGrad)" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Circuit nodes - main intersections -->
+  <g fill="url(#circuitGrad)">
+    <!-- Center column nodes -->
+    <circle cx="512" cy="280" r="5"/>
+    <circle cx="512" cy="350" r="5"/>
+    <circle cx="512" cy="440" r="5"/>
+    <circle cx="512" cy="500" r="6"/>
+    <circle cx="512" cy="560" r="5"/>
+    <circle cx="512" cy="620" r="5"/>
+    <circle cx="512" cy="680" r="5"/>
+    <circle cx="512" cy="740" r="5"/>
+    <circle cx="512" cy="800" r="5"/>
+
+    <!-- Left branch nodes -->
+    <circle cx="420" cy="440" r="4"/>
+    <circle cx="380" cy="500" r="4"/>
+    <circle cx="400" cy="560" r="4"/>
+    <circle cx="410" cy="620" r="4"/>
+    <circle cx="430" cy="680" r="4"/>
+    <circle cx="455" cy="740" r="4"/>
+    <circle cx="390" cy="510" r="3.5"/>
+    <circle cx="410" cy="580" r="3.5"/>
+    <circle cx="420" cy="650" r="3.5"/>
+    <circle cx="460" cy="500" r="3.5"/>
+    <circle cx="440" cy="560" r="3.5"/>
+    <circle cx="445" cy="380" r="3.5"/>
+    <circle cx="465" cy="320" r="3.5"/>
+
+    <!-- Right branch nodes -->
+    <circle cx="604" cy="440" r="4"/>
+    <circle cx="644" cy="500" r="4"/>
+    <circle cx="624" cy="560" r="4"/>
+    <circle cx="614" cy="620" r="4"/>
+    <circle cx="594" cy="680" r="4"/>
+    <circle cx="569" cy="740" r="4"/>
+    <circle cx="634" cy="510" r="3.5"/>
+    <circle cx="614" cy="580" r="3.5"/>
+    <circle cx="604" cy="650" r="3.5"/>
+    <circle cx="564" cy="500" r="3.5"/>
+    <circle cx="584" cy="560" r="3.5"/>
+    <circle cx="579" cy="380" r="3.5"/>
+    <circle cx="559" cy="320" r="3.5"/>
+  </g>
+
+  <!-- Node inner dots (bright centers) -->
+  <g fill="#FFCC66" opacity="0.8">
+    <circle cx="512" cy="500" r="3"/>
+    <circle cx="512" cy="350" r="2.5"/>
+    <circle cx="512" cy="620" r="2.5"/>
+    <circle cx="380" cy="500" r="2"/>
+    <circle cx="644" cy="500" r="2"/>
+    <circle cx="512" cy="280" r="2"/>
+    <circle cx="512" cy="800" r="2"/>
+  </g>
+</svg>
