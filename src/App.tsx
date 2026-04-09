@@ -4,7 +4,7 @@ import { ScrollProvider, useScroll, SCROLL_PAGES } from './context/ScrollContext
 import { ServiceSelectionProvider } from './context/ServiceSelectionContext'
 import { useGpuTier } from './hooks/useGpuTier'
 import SceneManager from './three/SceneManager'
-// Navigation removed
+import Navigation from './components/Navigation'
 import LoadingScreen from './components/LoadingScreen'
 // GrainScanlineOverlay removed for cleaner look
 import SeoContent from './components/SeoContent'
@@ -54,7 +54,8 @@ function AppInner() {
         <ContentOverlay progress={progress} />
       </div>
 
-      {/* Navigation removed */}
+      {/* Navigation */}
+      <Navigation scrollProgress={progress} scrollY={scrollY} />
 
       {/* Loading screen */}
       <LoadingScreen ready={canvasReady} />

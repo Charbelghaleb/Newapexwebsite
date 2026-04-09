@@ -455,7 +455,7 @@ function BackToTiersButton() {
       onClick={() => clearSelection()}
       style={{
         position: 'fixed',
-        top: '32px',
+        top: '88px',
         left: '32px',
         zIndex: 25,
         fontFamily: '"Share Tech Mono", monospace',
