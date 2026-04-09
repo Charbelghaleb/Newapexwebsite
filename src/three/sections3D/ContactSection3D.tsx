@@ -5,7 +5,7 @@ import { ring, arc, ticks, dashedRing, crosshair, diagonalCross, brackets, radia
 import { useScroll } from '../../context/ScrollContext'
 import { smoothstep } from '../../utils/mathUtils'
 
-const Z = -261
+const Z = -298
 
 export default function ContactSection3D() {
   const { progress } = useScroll()

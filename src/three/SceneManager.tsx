@@ -45,8 +45,12 @@ export default function SceneManager({ bloomEnabled = true, nodeBase = 80 }: Pro
       {/* Pure geometry sections */}
       <ProblemSection3D />
       <ServicesSection3D />
-      <IndustriesSection3D />
-      <SocialSection3D />
+      <Suspense fallback={null}>
+        <IndustriesSection3D />
+      </Suspense>
+      <Suspense fallback={null}>
+        <SocialSection3D />
+      </Suspense>
       <ContactSection3D />
 
       {bloomEnabled ? (

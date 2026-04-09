@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { smoothstep } from '../utils/mathUtils'
+import { useServiceSelection } from '../context/ServiceSelectionContext'
 
 interface Props { progress: number }
 
@@ -333,13 +334,159 @@ function StatBox({ num, sub, color = '#00E5FF' }: { num: string; sub: string; co
 }
 
 // ═══════════════════════════════════════════════
+// SERVICE FORM OVERLAY — floats on right half when camera is in detail zone
+// ═══════════════════════════════════════════════
+
+function ServiceFormOverlay() {
+  const { selectedTier, clearSelection } = useServiceSelection()
+  const [form, setForm] = useState({ name: '', email: '', phone: '', company: '', message: '' })
+  const [sent, setSent] = useState(false)
+
+  const visible = !!selectedTier
+  const tier = selectedTier
+  const accentColor = tier?.featured ? '#FF6B00' : '#00E5FF'
+
+  // Scroll lock
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => { document.body.style.overflow = '' }
+  }, [visible])
+
+  const fi: React.CSSProperties = {
+    width: '100%',
+    background: 'rgba(10,10,15,0.6)',
+    border: '1px solid rgba(37,37,64,0.7)',
+    color: '#E0E0EC',
+    padding: '10px 14px',
+    fontFamily: 'Rajdhani, sans-serif',
+    fontSize: '0.95rem',
+    outline: 'none',
+    marginBottom: 10,
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSent(true)
+    setTimeout(() => { setSent(false); clearSelection(); setForm({ name: '', email: '', phone: '', company: '', message: '' }) }, 3000)
+  }
+
+  const handleBack = () => { clearSelection(); setSent(false) }
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: '12vh', right: '3vw',
+      transform: `translateY(${visible ? '0' : '20px'})`,
+      width: 'min(380px, 30vw)',
+      opacity: visible ? 1 : 0,
+      transition: 'opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s',
+      pointerEvents: visible ? 'auto' : 'none',
+      zIndex: 20,
+    }}>
+      <HudPanel label={tier ? `${tier.tag} // GET_STARTED` : 'GET_STARTED'} variant={tier?.featured ? 'fire' : 'plasma'} glow>
+        <div style={{ padding: '18px 20px' }}>
+
+          {tier && (
+            <>
+              <div style={{ ...tag, color: accentColor, marginBottom: 6 }}>{'>'} INQUIRY_FORM</div>
+              <p style={{ ...p, fontSize: '0.85rem', marginBottom: 14 }}>
+                Tell us about your business and we'll tailor a {tier.name} package for you.
+              </p>
+
+              {sent ? (
+                <div style={{ ...mono, color: '#00E5FF', padding: '30px 0', textAlign: 'center', fontSize: '0.75rem' }}>
+                  {'>'} REQUEST_SENT //<br />we'll be in touch within 24 hours
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+                  <input style={fi} placeholder="Name *" required value={form.name}
+                    onFocus={e => (e.currentTarget.style.borderColor = accentColor)}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(37,37,64,0.7)')}
+                    onChange={e => setForm(s => ({ ...s, name: e.target.value }))} />
+                  <input style={fi} type="email" placeholder="Email *" required value={form.email}
+                    onFocus={e => (e.currentTarget.style.borderColor = accentColor)}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(37,37,64,0.7)')}
+                    onChange={e => setForm(s => ({ ...s, email: e.target.value }))} />
+                  <input style={fi} type="tel" placeholder="Phone" value={form.phone}
+                    onFocus={e => (e.currentTarget.style.borderColor = accentColor)}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(37,37,64,0.7)')}
+                    onChange={e => setForm(s => ({ ...s, phone: e.target.value }))} />
+                  <input style={fi} placeholder="Company" value={form.company}
+                    onFocus={e => (e.currentTarget.style.borderColor = accentColor)}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(37,37,64,0.7)')}
+                    onChange={e => setForm(s => ({ ...s, company: e.target.value }))} />
+                  <textarea style={{ ...fi, minHeight: 70, resize: 'vertical' }}
+                    placeholder="Tell us about your business..."
+                    value={form.message}
+                    onFocus={e => (e.currentTarget.style.borderColor = accentColor)}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(37,37,64,0.7)')}
+                    onChange={e => setForm(s => ({ ...s, message: e.target.value }))} />
+                  <button type="submit" style={{
+                    ...ctaPrimary, marginTop: 6,
+                    background: tier.featured ? 'linear-gradient(135deg, #FF6B00, #FFAA00)' : 'linear-gradient(135deg, #00E5FF, #0099CC)',
+                    color: '#000', fontWeight: 700,
+                  }}>
+                    GET MY FREE PACKAGE →
+                  </button>
+                </form>
+              )}
+            </>
+          )}
+        </div>
+      </HudPanel>
+    </div>
+  )
+}
+
+// ═══════════════════════════════════════════════
 // MAIN OVERLAY
 // ═══════════════════════════════════════════════
+
+function BackToTiersButton() {
+  const { selectedTier, clearSelection } = useServiceSelection()
+  const visible = !!selectedTier
+
+  return (
+    <button
+      onClick={() => clearSelection()}
+      style={{
+        position: 'fixed',
+        top: '32px',
+        left: '32px',
+        zIndex: 25,
+        fontFamily: '"Share Tech Mono", monospace',
+        fontSize: '0.78rem',
+        letterSpacing: '0.14em',
+        color: '#6A6A8A',
+        background: 'rgba(10,10,15,0.7)',
+        border: '1px solid rgba(37,37,64,0.5)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        cursor: 'pointer',
+        padding: '10px 20px',
+        opacity: visible ? 1 : 0,
+        transform: `translateX(${visible ? '0' : '-20px'})`,
+        transition: 'opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s, color 0.15s, border-color 0.15s',
+        pointerEvents: visible ? 'auto' : 'none',
+        clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
+      }}
+      onMouseEnter={e => { e.currentTarget.style.color = '#E0E0EC'; e.currentTarget.style.borderColor = 'rgba(0,229,255,0.4)' }}
+      onMouseLeave={e => { e.currentTarget.style.color = '#6A6A8A'; e.currentTarget.style.borderColor = 'rgba(37,37,64,0.5)' }}
+    >
+      ← BACK TO TIERS
+    </button>
+  )
+}
 
 export default function ContentOverlay({ progress }: Props) {
   return (
     <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-      {/* All offer text now lives in 3D scene (OfferSection3D) */}
+      <BackToTiersButton />
+      <ServiceFormOverlay />
     </div>
   )
 }

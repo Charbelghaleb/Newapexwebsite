@@ -1,6 +1,7 @@
 import { Suspense, useState, useCallback } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { ScrollProvider, useScroll, SCROLL_PAGES } from './context/ScrollContext'
+import { ServiceSelectionProvider } from './context/ServiceSelectionContext'
 import { useGpuTier } from './hooks/useGpuTier'
 import SceneManager from './three/SceneManager'
 // Navigation removed
@@ -67,7 +68,9 @@ function AppInner() {
 export default function App() {
   return (
     <ScrollProvider>
-      <AppInner />
+      <ServiceSelectionProvider>
+        <AppInner />
+      </ServiceSelectionProvider>
     </ScrollProvider>
   )
 }

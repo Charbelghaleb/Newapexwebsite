@@ -5,7 +5,7 @@ import * as THREE from 'three'
 import { FLAME_LOGO } from '../../context/ScrollContext'
 import { ring, arc, ticks, dashedRing, crosshair, diagonalCross, brackets, radials, toBuffer } from '../holoGeometry'
 
-const Z = -224
+const Z = -261
 
 function FlamePlane() {
   const texture = useTexture(FLAME_LOGO)

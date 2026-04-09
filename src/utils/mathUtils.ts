@@ -16,6 +16,12 @@ export function smoothstep(edge0: number, edge1: number, x: number): number {
   return t * t * (3 - 2 * t)
 }
 
+/** Quintic smoothstep — C2 continuous (no acceleration discontinuity) */
+export function smootherstep(edge0: number, edge1: number, x: number): number {
+  const t = clamp((x - edge0) / (edge1 - edge0), 0, 1)
+  return t * t * t * (t * (t * 6 - 15) + 10)
+}
+
 /** Linear interpolation */
 export function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t

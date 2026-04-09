@@ -1,7 +1,7 @@
 # CLAUDE.md — Apex Prometheus Immersive Landing Page
 
 ## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+- **Run Blueprint Mode** before writing any frontend code, every session, no exceptions. The blueprint skill is located at `blueprint-mode.skill` in the project root. Extract and read it with: `unzip -p blueprint-mode.skill "blueprint-mode/SKILL.md"`. Follow its 9-phase process (Structural Scan → SVG Blueprint → Spec Tables → Color Map → Responsive Breakpoints → State Mapping → Animation Specs → Accessibility Audit → Issues Summary). Blueprint FIRST, code SECOND.
 - Read this entire file before starting any task.
 
 ## Reference Images

@@ -62,20 +62,45 @@ function GiftIcon({ position, z }: { position: [number, number]; z: number }) {
   )
 }
 
-// ── Text ring — many words packed along a circular path forming the shape ──
-function TextRing({ y, r, count, words, size, color, op }: {
-  y: number; r: number; count: number; words: string[]
+// ── Text ring — words along a circular path, proportional spacing ──
+const CHAR_WIDTH = 0.75
+
+function TextRing({ y, r, phrase, size, color, op }: {
+  y: number; r: number; phrase: string[]
   size: number; color: string; op: number
 }) {
   const items = useMemo(() => {
-    const arr = []
-    for (let i = 0; i < count; i++) {
-      const angle = -(Math.PI * 2 * i) / count
-      const word = words[i % words.length]
-      arr.push({ angle, word, s: size })
+    const gap = size * 0.8
+    const wordWidths = phrase.map(w => w.length * size * CHAR_WIDTH)
+    const phraseArc = wordWidths.reduce((sum, w) => sum + w + gap, 0)
+    const circumference = 2 * Math.PI * r
+
+    // If phrase is wider than circumference, fall back to equal angular spacing
+    if (phraseArc >= circumference) {
+      const count = phrase.length
+      return phrase.map((word, i) => ({
+        angle: -(Math.PI * 2 * i) / count,
+        word,
+      }))
+    }
+
+    const repeats = Math.min(Math.floor(circumference / phraseArc), 12)
+    const totalWordArc = wordWidths.reduce((s, w) => s + w, 0) * repeats
+    const totalGapCount = phrase.length * repeats
+    const adjustedGap = (circumference - totalWordArc) / totalGapCount
+
+    const arr: { angle: number; word: string }[] = []
+    let cur = 0
+    for (let rep = 0; rep < repeats; rep++) {
+      for (let w = 0; w < phrase.length; w++) {
+        const wordAng = wordWidths[w] / r
+        const gapAng = adjustedGap / r
+        arr.push({ angle: -(cur + wordAng / 2), word: phrase[w] })
+        cur += wordAng + gapAng
+      }
     }
     return arr
-  }, [count, words, size])
+  }, [phrase, size, r])
 
   return (
     <group>
@@ -83,7 +108,7 @@ function TextRing({ y, r, count, words, size, color, op }: {
         <Text
           key={i}
           font={FONT_HEADING}
-          fontSize={item.s}
+          fontSize={size}
           position={[
             Math.cos(item.angle) * r,
             y,
@@ -676,24 +701,24 @@ export default function OfferSection3D() {
           </lineSegments>
 
           {/* Typographic fill — dense lines, alternating blue/orange, varied size per ring */}
-          <TextRing y={2.5} r={0.3} count={4} size={0.055} color="#FF6B00" op={0.22}
-            words={['FREE', 'PACKAGE.', 'FREE', 'PACKAGE.']} />
-          <TextRing y={2.0} r={0.7} count={8} size={0.06} color="#FF6B00" op={0.22}
-            words={['BEFORE', 'YOU', 'PAY', 'US', 'A', 'DIME.', 'BEFORE', 'YOU']} />
-          <TextRing y={1.4} r={1.2} count={8} size={0.07} color="#FF6B00" op={0.2}
-            words={['SCAN', 'YOUR', 'BUSINESS', '(FREE).', 'SCAN', 'YOUR', 'BUSINESS', '(FREE).']} />
-          <TextRing y={0.7} r={1.8} count={12} size={0.08} color="#FF6B00" op={0.2}
-            words={['BUILD', 'YOU', '2', 'WEEKS', 'OF', 'CONTENT', '(FREE).', 'BUILD', 'YOU', '2', 'WEEKS', 'OF']} />
-          <TextRing y={0} r={2.3} count={16} size={0.12} color="#FF6B00" op={0.22}
-            words={['FREE.', 'GET', 'MY', 'FREE', 'PACKAGE.', 'BOOK', 'A', '15', 'MIN', 'CALL.', 'FREE.', 'GET', 'MY', 'FREE', 'PACKAGE.', 'BOOK']} />
-          <TextRing y={-0.7} r={1.8} count={12} size={0.08} color="#FF6B00" op={0.2}
-            words={['SHOW', 'YOU', 'WHAT', 'AI', 'SAYS', 'ABOUT', 'YOU.', 'SHOW', 'YOU', 'WHAT', 'AI']} />
-          <TextRing y={-1.4} r={1.2} count={10} size={0.07} color="#FF6B00" op={0.2}
-            words={['GIVE', 'YOU', 'YOUR', 'FREE', 'AI', 'VISIBILITY', 'SCORE.', 'GIVE', 'YOU', 'YOUR']} />
-          <TextRing y={-2.0} r={0.7} count={8} size={0.06} color="#FF6B00" op={0.22}
-            words={['BEFORE', 'YOU', 'PAY', 'US', 'A', 'DIME.', 'BEFORE', 'YOU']} />
-          <TextRing y={-2.5} r={0.3} count={6} size={0.055} color="#FF6B00" op={0.22}
-            words={['FREE', 'PACKAGE.', 'FREE', 'PACKAGE.', 'FREE', 'PACKAGE.']} />
+          <TextRing y={2.5} r={0.3} size={0.055} color="#FF6B00" op={0.22}
+            phrase={['FREE', 'PACKAGE.']} />
+          <TextRing y={2.0} r={0.7} size={0.06} color="#FF6B00" op={0.22}
+            phrase={['BEFORE', 'YOU', 'PAY', 'US', 'A', 'DIME.']} />
+          <TextRing y={1.4} r={1.2} size={0.07} color="#FF6B00" op={0.2}
+            phrase={['SCAN', 'YOUR', 'BUSINESS', '(FREE).']} />
+          <TextRing y={0.7} r={1.8} size={0.08} color="#FF6B00" op={0.2}
+            phrase={['BUILD', 'YOU', '2', 'WEEKS', 'OF', 'CONTENT', '(FREE).']} />
+          <TextRing y={0} r={2.3} size={0.12} color="#FF6B00" op={0.22}
+            phrase={['FREE.', 'GET', 'MY', 'FREE', 'PACKAGE.', 'BOOK', 'A', '15', 'MIN', 'CALL.']} />
+          <TextRing y={-0.7} r={1.8} size={0.08} color="#FF6B00" op={0.2}
+            phrase={['SHOW', 'YOU', 'WHAT', 'AI', 'SAYS', 'ABOUT', 'YOU.']} />
+          <TextRing y={-1.4} r={1.2} size={0.07} color="#FF6B00" op={0.2}
+            phrase={['GIVE', 'YOU', 'YOUR', 'FREE', 'AI', 'VISIBILITY', 'SCORE.']} />
+          <TextRing y={-2.0} r={0.7} size={0.06} color="#FF6B00" op={0.22}
+            phrase={['BEFORE', 'YOU', 'PAY', 'US', 'A', 'DIME.']} />
+          <TextRing y={-2.5} r={0.3} size={0.055} color="#FF6B00" op={0.22}
+            phrase={['FREE', 'PACKAGE.']} />
         </group>
       </group>
     </>
