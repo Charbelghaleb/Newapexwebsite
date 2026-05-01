@@ -345,73 +345,68 @@ function RightText({ t }: { t: number }) {
         const px = i * 1.78
         const py = 0.28
         const pw = 1.65
-        const ph = pkg.featured ? 2.20 : 1.95
         const accent = pkg.featured ? '#FF6B00' : '#00E5FF'
+        const nameSize = pkg.featured ? 0.18 : 0.16
+        const priceSize = pkg.featured ? 0.30 : 0.26
+        const tagOp = (pkg.featured ? 0.75 : 0.50) * t
+        const nameOp = (pkg.featured ? 0.92 : 0.82) * t
+        const tagLabel = pkg.featured ? `\u2605 PKG_0${i + 1} \u00B7 MOST POPULAR` : `PKG_0${i + 1}`
 
         return (
-          <group key={pkg.name}>
-            <HudCard x={px} y={py} z={-0.08} w={pw} h={ph}
-              color={accent}
-              fillOpacity={(pkg.featured ? 0.18 : 0.09) * t}
-              borderOpacity={(pkg.featured ? 0.55 : 0.30) * t} />
-
+          <group key={pkg.name} position={[px, py, -0.05]}>
             {/* Accent sidebar */}
-            <lineSegments position={[px, py - 0.06, -0.06]} renderOrder={3}>
+            <lineSegments renderOrder={1}>
               <bufferGeometry>
                 <bufferAttribute attach="attributes-position"
-                  args={[new Float32Array([0, 0, 0, 0, -(ph - 0.12), 0]), 3]} count={2} />
+                  args={[new Float32Array([0, 0.05, 0, 0, -2.05, 0]), 3]} count={2} />
               </bufferGeometry>
-              <lineBasicMaterial color={accent} transparent opacity={(pkg.featured ? 0.55 : 0.22) * t} depthWrite={false} />
+              <lineBasicMaterial color={accent} transparent opacity={(pkg.featured ? 0.50 : 0.22) * t} depthWrite={false} />
             </lineSegments>
 
-            {/* MOST POPULAR badge \u2014 sits above the card so it doesn't cover title/price */}
-            {pkg.featured && (
-              <>
-                <mesh position={[px + pw / 2, py + 0.16, -0.05]} renderOrder={2}>
-                  <planeGeometry args={[1.05, 0.20]} />
-                  <meshBasicMaterial color="#FF6B00" transparent opacity={0.92 * t} depthWrite={false} />
-                </mesh>
-                <Text font={FONT_MONO} fontSize={0.090} position={[px + pw / 2, py + 0.16, -0.04]}
-                  anchorX="center" anchorY="middle" color="#000000" renderOrder={4}
-                  {...M} material-opacity={1.0 * t} letterSpacing={0.14}>
-                  \u2605 MOST POPULAR
-                </Text>
-              </>
-            )}
+            {/* Tag */}
+            <Text font={FONT_MONO} fontSize={0.075} position={[0.12, -0.05, 0]}
+              anchorX="left" anchorY="middle" color={accent} renderOrder={1}
+              {...M} material-opacity={tagOp} letterSpacing={0.15}>
+              {tagLabel}
+            </Text>
 
             {/* Name */}
-            <Text font={FONT_HEADING} fontSize={0.175} position={[px + 0.10, py - 0.22, -0.05]}
-              anchorX="left" anchorY="middle" color={pkg.featured ? '#FF6B00' : '#E0E0EC'} renderOrder={3}
-              {...M} material-opacity={1.0 * t}
-              outlineWidth={0.004} outlineColor={pkg.featured ? '#FF6B00' : '#00E5FF'} outlineOpacity={0.35 * t}>
+            <Text font={FONT_HEADING} fontSize={nameSize} position={[0.12, -0.32, 0]}
+              anchorX="left" anchorY="middle" color={accent} renderOrder={2}
+              {...M} material-opacity={nameOp} letterSpacing={0.01}
+              outlineWidth={0.004} outlineColor={accent} outlineOpacity={0.20 * t}>
+              {pkg.name}
+            </Text>
+            {/* Ghost echo */}
+            <Text font={FONT_HEADING} fontSize={nameSize} position={[0.16, -0.34, -0.12]}
+              anchorX="left" anchorY="middle" color={accent} renderOrder={0}
+              {...M} material-opacity={0.05 * t} letterSpacing={0.01}>
               {pkg.name}
             </Text>
 
             {/* Price */}
-            <Text font={FONT_HEADING} fontSize={0.28} position={[px + 0.10, py - 0.50, -0.05]}
-              anchorX="left" anchorY="middle" color="#E0E0EC" renderOrder={3}
-              {...M} material-opacity={1.0 * t}
-              outlineWidth={0.005} outlineColor={accent} outlineOpacity={0.45 * t}>
+            <Text font={FONT_HEADING} fontSize={priceSize} position={[0.12, -0.66, 0]}
+              anchorX="left" anchorY="middle" color="#E0E0EC" renderOrder={1}
+              {...M} material-opacity={(pkg.featured ? 0.95 : 0.88) * t}
+              {...(pkg.featured ? { outlineWidth: 0.004, outlineColor: '#FF6B00', outlineOpacity: 0.20 * t } : {})}>
               {pkg.price}
             </Text>
 
-            {/* Separator */}
-            <lineSegments position={[px + 0.10, py - 0.72, -0.05]} renderOrder={3}>
+            {/* Thin separator */}
+            <lineSegments position={[0.12, -0.88, 0]} renderOrder={1}>
               <bufferGeometry>
                 <bufferAttribute attach="attributes-position"
-                  args={[new Float32Array([0, 0, 0, pw - 0.20, 0, 0]), 3]} count={2} />
+                  args={[new Float32Array([0, 0, 0, pw - 0.24, 0, 0]), 3]} count={2} />
               </bufferGeometry>
-              <lineBasicMaterial color={accent} transparent opacity={0.32 * t} depthWrite={false} />
+              <lineBasicMaterial color={accent} transparent opacity={0.10 * t} depthWrite={false} />
             </lineSegments>
 
             {/* Features */}
-            {pkg.features.map((f, j) => (
-              <Text key={j} font={FONT_BODY} fontSize={0.115} position={[px + 0.10, py - 0.92 - j * 0.22, -0.05]}
-                anchorX="left" anchorY="middle" color="#E0E0EC" renderOrder={3}
-                {...M} material-opacity={0.85 * t} maxWidth={1.45}>
-                {`\u25B8 ${f}`}
-              </Text>
-            ))}
+            <Text font={FONT_BODY} fontSize={0.105} position={[0.20, -1.00, 0]}
+              anchorX="left" anchorY="top" color="#E0E0EC" renderOrder={1}
+              {...M} material-opacity={0.32 * t} maxWidth={1.45} lineHeight={1.55}>
+              {pkg.features.map(f => `\u25B8 ${f}`).join('\n')}
+            </Text>
           </group>
         )
       })}
