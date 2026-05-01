@@ -124,14 +124,14 @@ function LeftText({ t }: { t: number }) {
     <group ref={groupRef} position={[-4.1, 1.5, Z + 4]} rotation={[0, 0.22, 0]}>
 
       {/* Tag with dash prefix */}
-      <lineSegments position={[-0.35, 2.6, 0]} renderOrder={1}>
+      <lineSegments position={[-0.35, 2.35, 0]} renderOrder={1}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position"
             args={[new Float32Array([0, 0, 0, 0.28, 0, 0]), 3]} count={2} />
         </bufferGeometry>
         <lineBasicMaterial color="#FF6B00" transparent opacity={0.50 * t} depthWrite={false} />
       </lineSegments>
-      <Text font={FONT_MONO} fontSize={0.12} position={[0, 2.6, 0]}
+      <Text font={FONT_MONO} fontSize={0.12} position={[0, 2.35, 0]}
         anchorX="left" anchorY="middle" color="#FF6B00" renderOrder={1}
         {...M} material-opacity={0.6 * t} letterSpacing={0.18}>
         CONTENT_AUTOMATION
@@ -152,12 +152,13 @@ function LeftText({ t }: { t: number }) {
       </Text>
       <Text font={FONT_HEADING} fontSize={0.32} position={[0, 1.00, 0]}
         anchorX="left" anchorY="middle" color="#E0E0EC" renderOrder={2}
-        {...M} material-opacity={0.88 * t} letterSpacing={-0.03}>
+        {...M} material-opacity={0.92 * t} letterSpacing={-0.03}
+        outlineWidth={0.005} outlineColor="#00E5FF" outlineOpacity={0.25 * t}>
         IT'S JUST RUNNING
       </Text>
       <Text font={FONT_HEADING} fontSize={0.32} position={[0, 0.58, 0]}
         anchorX="left" anchorY="middle" color="#FF6B00" renderOrder={2}
-        {...M} material-opacity={0.88 * t} letterSpacing={-0.03}
+        {...M} material-opacity={0.92 * t} letterSpacing={-0.03}
         outlineWidth={0.004} outlineColor="#FF6B00" outlineOpacity={0.25 * t}>
         ON MANUAL.
       </Text>
@@ -433,12 +434,12 @@ function RightText({ t }: { t: number }) {
               color="#00E5FF" fillOpacity={0.10 * t} borderOpacity={0.40 * t} />
 
             <Text font={FONT_HEADING} fontSize={0.30} position={[sx + sw / 2, sy - 0.26, -0.10]}
-              anchorX="center" anchorY="middle" color="#FF6B00" renderOrder={3}
+              anchorX="center" anchorY="middle" color="#E0E0EC" renderOrder={3}
               {...M} material-opacity={1.0 * t}
-              outlineWidth={0.004} outlineColor="#FF6B00" outlineOpacity={0.40 * t}>
+              outlineWidth={0.004} outlineColor="#00E5FF" outlineOpacity={0.40 * t}>
               {value}
             </Text>
-            <Text font={FONT_BODY} fontSize={0.105} position={[sx + sw / 2, sy - 0.62, -0.10]}
+            <Text font={FONT_BODY} fontSize={0.12} position={[sx + sw / 2, sy - 0.62, -0.10]}
               anchorX="center" anchorY="middle" color="#E0E0EC" renderOrder={3}
               {...M} material-opacity={0.85 * t} lineHeight={1.25} textAlign="center" maxWidth={1.15}>
               {label}
@@ -510,7 +511,7 @@ function OrbitalHologram({ t }: { t: number }) {
   useFrame(({ clock }) => {
     if (groupRef.current && t > 0.01) groupRef.current.rotation.y += 0.002
     if (wrapRef.current) {
-      const s = 0.65 * t
+      const s = 0.45 * t
       wrapRef.current.scale.set(s, s, s)
     }
     ORBITS.forEach(([r, , , speed], i) => {
@@ -523,7 +524,7 @@ function OrbitalHologram({ t }: { t: number }) {
   })
 
   return (
-    <group ref={wrapRef} position={[0, 1.5, Z]} scale={0}>
+    <group ref={wrapRef} position={[2.0, 1.5, Z]} scale={0}>
       <group ref={groupRef}>
         <lineSegments>
           <bufferGeometry>
@@ -579,9 +580,10 @@ function OrbitalHologram({ t }: { t: number }) {
 
 export default function SocialSection3D() {
   const { progress } = useScroll()
-  const leftT = smootherstep(0.870, 0.890, progress)
-  const rightT = smootherstep(0.885, 0.905, progress)
-  const holoT = smootherstep(0.898, 0.918, progress)
+  const fadeOut = 1 - smootherstep(0.89, 0.91, progress)
+  const leftT = smootherstep(0.78, 0.83, progress) * fadeOut
+  const holoT = smootherstep(0.81, 0.86, progress) * fadeOut
+  const rightT = smootherstep(0.83, 0.88, progress) * fadeOut
 
   return (
     <>
