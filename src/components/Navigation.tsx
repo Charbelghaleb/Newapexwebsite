@@ -12,9 +12,9 @@ const NAV_LINKS = [
   { label: 'Problem', target: 0.12 },
   { label: 'Services', target: 0.37 },
   { label: 'Industries', target: 0.52 },
-  { label: 'Social Media', target: 0.67 },
-  { label: 'About', target: 0.77 },
-  { label: 'Contact', target: 0.90 },
+  { label: 'Social Media', target: 0.70 },
+  { label: 'About', target: 0.82 },
+  { label: 'Contact', target: 0.94 },
 ]
 
 function scrollToProgress(p: number) {
@@ -87,7 +87,7 @@ export default function Navigation({ scrollProgress, scrollY }: Props) {
       {/* CTA Button */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
         <button
-          onClick={() => scrollToProgress(0.90)}
+          onClick={() => scrollToProgress(0.94)}
           className="card-clip"
           style={{
             fontFamily: '"Share Tech Mono", monospace', fontSize: '0.72rem',

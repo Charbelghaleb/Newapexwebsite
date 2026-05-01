@@ -24,7 +24,7 @@ const inputStyle: CSSProperties = {
 }
 
 export default function ContactContent({ progress }: Props) {
-  const opacity = smoothstep(0.90, 0.92, progress) * (1 - smoothstep(0.99, 1.0, progress))
+  const opacity = smoothstep(0.91, 0.93, progress) * (1 - smoothstep(0.99, 1.0, progress))
   const [formState, setFormState] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
 

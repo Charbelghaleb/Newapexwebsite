@@ -96,7 +96,7 @@ export default function ServicesContent({ progress }: Props) {
               </div>
 
               <button
-                onClick={() => scrollToProgress(0.90)}
+                onClick={() => scrollToProgress(0.94)}
                 className="card-clip"
                 style={{
                   fontFamily: '"Share Tech Mono", monospace', fontSize: '0.72rem',

@@ -20,7 +20,7 @@ const FEATURES = [
 ]
 
 export default function AboutContent({ progress }: Props) {
-  const opacity = smoothstep(0.77, 0.79, progress) * (1 - smoothstep(0.86, 0.88, progress))
+  const opacity = smoothstep(0.78, 0.80, progress) * (1 - smoothstep(0.89, 0.91, progress))
 
   return (
     <div style={{
