@@ -40,7 +40,7 @@ function scrollToProgress(p: number) {
 }
 
 export default function SocialMediaContent({ progress }: Props) {
-  const opacity = smoothstep(0.67, 0.69, progress) * (1 - smoothstep(0.74, 0.75, progress))
+  const opacity = smoothstep(0.65, 0.67, progress) * (1 - smoothstep(0.76, 0.78, progress))
 
   return (
     <div style={{
@@ -115,7 +115,7 @@ export default function SocialMediaContent({ progress }: Props) {
                 ))}
               </ul>
               <button
-                onClick={() => scrollToProgress(0.90)}
+                onClick={() => scrollToProgress(0.94)}
                 className="card-clip"
                 style={{
                   width: '100%', fontFamily: '"Share Tech Mono", monospace', fontSize: '0.7rem',

@@ -27,9 +27,9 @@ void main() {
 `
 
 export default function Scene8_Contact({ progress, nodeBase = 80 }: Props) {
-  if (progress < 0.86 || progress > 1.0) return null
+  if (progress < 0.89 || progress > 1.0) return null
 
-  const local = remap(progress, 0.88, 1.0)
+  const local = remap(progress, 0.92, 1.0)
   const convP = smoothstep(0, 1, local)
   const nodeCount = Math.round((nodeBase ?? 80) * 0.4)
 

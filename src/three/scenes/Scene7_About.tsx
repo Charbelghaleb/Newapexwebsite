@@ -5,7 +5,7 @@ import WireframePanel from '../WireframePanel'
 interface Props { progress: number; nodeBase?: number }
 
 export default function Scene7_About({ progress, nodeBase = 80 }: Props) {
-  if (progress < 0.73 || progress > 0.90) return null
+  if (progress < 0.76 || progress > 0.92) return null
   const count = Math.round(nodeBase * 0.55)
 
   return (

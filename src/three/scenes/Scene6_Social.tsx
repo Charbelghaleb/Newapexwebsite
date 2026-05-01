@@ -30,7 +30,7 @@ void main() {
 `
 
 export default function Scene6_Social({ progress, nodeBase = 80 }: Props) {
-  if (progress < 0.63 || progress > 0.77) return null
+  if (progress < 0.63 || progress > 0.79) return null
 
   const nodeCount = Math.round(nodeBase * 1.2)
 

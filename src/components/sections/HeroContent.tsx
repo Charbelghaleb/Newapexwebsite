@@ -77,7 +77,7 @@ export default function HeroContent({ progress }: Props) {
         {/* Buttons */}
         <div className="fade-up-5" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center', pointerEvents: 'auto' }}>
           <button
-            onClick={() => scrollToProgress(0.90)}
+            onClick={() => scrollToProgress(0.94)}
             className="card-clip"
             style={{
               fontFamily: '"Share Tech Mono", monospace', fontSize: '0.8rem',

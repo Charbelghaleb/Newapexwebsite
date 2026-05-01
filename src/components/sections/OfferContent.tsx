@@ -93,7 +93,7 @@ export default function OfferContent({ progress }: Props) {
         {/* Buttons */}
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', pointerEvents: 'auto' }}>
           <button
-            onClick={() => scrollToProgress(0.90)}
+            onClick={() => scrollToProgress(0.94)}
             className="card-clip"
             style={{
               fontFamily: '"Share Tech Mono", monospace', fontSize: '0.78rem',
@@ -106,7 +106,7 @@ export default function OfferContent({ progress }: Props) {
             Get My Free Package →
           </button>
           <button
-            onClick={() => scrollToProgress(0.90)}
+            onClick={() => scrollToProgress(0.94)}
             className="card-clip"
             style={{
               fontFamily: '"Share Tech Mono", monospace', fontSize: '0.78rem',
