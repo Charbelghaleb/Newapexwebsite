@@ -61,19 +61,6 @@ export default function SocialMediaContent({ progress }: Props) {
           You haven't posted in 3 months. Maybe 6. Your competitors who DO post consistently are getting the calls you're not.
         </p>
 
-        {/* 3-step flow */}
-        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-          {['Brand DNA Extraction', 'Content Production at Scale', 'Automated Posting & Optimization'].map((step, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div style={{ ...cardStyle, padding: '10px 16px', textAlign: 'center', minWidth: '160px' }}>
-                <div style={{ fontFamily: '"Share Tech Mono", monospace', fontSize: '0.6rem', color: '#6A6A8A', marginBottom: '4px' }}>0{i + 1}</div>
-                <div style={{ fontFamily: 'Rajdhani, sans-serif', fontSize: '0.85rem', fontWeight: 600, color: '#E0E0EC' }}>{step}</div>
-              </div>
-              {i < 2 && <span style={{ color: '#00E5FF', fontSize: '1rem' }}>→</span>}
-            </div>
-          ))}
-        </div>
-
         {/* Before / After */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', width: '100%' }}>
           <div style={{ ...cardStyle, border: '1px solid rgba(255,51,51,0.4)', padding: '16px' }}>

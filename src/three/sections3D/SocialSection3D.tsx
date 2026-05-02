@@ -18,12 +18,6 @@ const M = { fog: true, transparent: true, depthWrite: false } as const
 // DATA
 // ═══════════════════════════════════════════════════════
 
-const STEPS = [
-  { num: '01', title: 'BRAND DNA EXTRACTION', desc: 'Scan your site, pull colors, voice, images. Complete brand profile in minutes — not weeks.' },
-  { num: '02', title: 'CONTENT AT SCALE', desc: '20-30 branded posts monthly — graphics, captions, hashtags, calendar. All automated.' },
-  { num: '03', title: 'AUTO POST & OPTIMIZE', desc: 'Posts go out while you work. We monitor & adjust. More of what works.' },
-]
-
 const BEFORE_ITEMS = [
   'X  Last post: 4 months ago',
   'X  Followers: 487 (stagnant)',
@@ -207,58 +201,6 @@ function LeftText({ t }: { t: number }) {
         </bufferGeometry>
         <lineBasicMaterial color="#FF6B00" transparent opacity={0.22 * t} depthWrite={false} />
       </lineSegments>
-
-      {/* HOW IT WORKS */}
-      <Text font={FONT_MONO} fontSize={0.09} position={[0, -0.78, 0]}
-        anchorX="left" anchorY="middle" color="#FF6B00" renderOrder={1}
-        {...M} material-opacity={0.55 * t} letterSpacing={0.15}>
-        {'> HOW_IT_WORKS //'}
-      </Text>
-
-      {/* 3-step process with number boxes */}
-      {STEPS.map(({ num, title, desc }, i) => {
-        const y = -1.10 - i * 0.72
-        const numW = 0.30
-        const numH = 0.24
-        return (
-          <group key={num}>
-            <mesh position={[numW / 2, y + 0.06, -0.01]} renderOrder={0}>
-              <planeGeometry args={[numW, numH]} />
-              <meshBasicMaterial color="#FF6B00" transparent opacity={0.10 * t} depthWrite={false} />
-            </mesh>
-            <WireRect x={-numW / 2 + numW / 2} y={y + 0.06 + numH / 2} z={0} w={numW} h={numH} color="#FF6B00" opacity={0.35 * t} />
-            <Text font={FONT_MONO} fontSize={0.10} position={[numW / 2, y + 0.06, 0.01]}
-              anchorX="center" anchorY="middle" color="#FF6B00" renderOrder={3}
-              {...M} material-opacity={0.80 * t} letterSpacing={0.08}>
-              {num}
-            </Text>
-
-            <Text font={FONT_HEADING} fontSize={0.135} position={[0.48, y + 0.06, 0]}
-              anchorX="left" anchorY="middle" color="#E0E0EC" renderOrder={1}
-              {...M} material-opacity={0.65 * t}>
-              {title}
-            </Text>
-            <Text font={FONT_BODY} fontSize={0.085} position={[0.48, y - 0.14, 0]}
-              anchorX="left" anchorY="top" color="#6A6A8A" renderOrder={1}
-              {...M} material-opacity={0.30 * t} maxWidth={3.3} lineHeight={1.4}>
-              {desc}
-            </Text>
-            {i < 2 && (
-              <lineSegments position={[1.8, y - 0.36, 0]} renderOrder={1}>
-                <bufferGeometry>
-                  <bufferAttribute attach="attributes-position"
-                    args={[new Float32Array([
-                      -0.3, 0, 0, 0.3, 0, 0,
-                      0.3, 0, 0, 0.22, 0.05, 0,
-                      0.3, 0, 0, 0.22, -0.05, 0,
-                    ]), 3]} count={6} />
-                </bufferGeometry>
-                <lineBasicMaterial color="#00E5FF" transparent opacity={0.25 * t} depthWrite={false} />
-              </lineSegments>
-            )}
-          </group>
-        )
-      })}
 
       {/* Bottom accent */}
       <lineSegments position={[0, -3.35, 0]} renderOrder={1}>
