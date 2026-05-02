@@ -7,7 +7,6 @@ import ProblemSection3D from './sections3D/ProblemSection3D'
 import OfferSection3D from './sections3D/OfferSection3D'
 import ServicesSection3D from './sections3D/ServicesSection3D'
 import IndustriesSection3D from './sections3D/IndustriesSection3D'
-import SocialSection3D from './sections3D/SocialSection3D'
 import AboutSection3D from './sections3D/AboutSection3D'
 import ContactSection3D from './sections3D/ContactSection3D'
 interface Props {
@@ -47,9 +46,6 @@ export default function SceneManager({ bloomEnabled = true, nodeBase = 80 }: Pro
       <ServicesSection3D />
       <Suspense fallback={null}>
         <IndustriesSection3D />
-      </Suspense>
-      <Suspense fallback={null}>
-        <SocialSection3D />
       </Suspense>
       <ContactSection3D />
 
