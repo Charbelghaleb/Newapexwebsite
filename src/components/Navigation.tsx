@@ -12,7 +12,6 @@ const NAV_LINKS = [
   { label: 'Problem', target: 0.12 },
   { label: 'Services', target: 0.37 },
   { label: 'Industries', target: 0.52 },
-  { label: 'Social Media', target: 0.70 },
   { label: 'About', target: 0.82 },
   { label: 'Contact', target: 0.94 },
 ]

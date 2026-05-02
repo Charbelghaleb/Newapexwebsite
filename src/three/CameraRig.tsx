@@ -22,7 +22,7 @@ const CAM_CURVE = new THREE.CatmullRomCurve3([
   new THREE.Vector3(0,    1.0, -122),  // Breathing room — Services → Industries gap
   new THREE.Vector3(0,    1.6, -135),  // Industries (Z=-150)
   new THREE.Vector3(2,    0.5, -165),  // Exit through last planet
-  new THREE.Vector3(1,    0.8, -185),  // Breathing room — Industries → Social gap
+  new THREE.Vector3(1,    0.8, -185),  // Breathing room before About
   new THREE.Vector3(0,    0.6, -200),  // Breathing room continued
   new THREE.Vector3(2,    0.5, -210),  // Social approach (Z=-224)
   new THREE.Vector3(-1,   0.5, -247),  // About zone (Z=-261)
@@ -171,57 +171,6 @@ export default function CameraRig() {
       // Blend-out: smoothly transition from override back to spline
       else if (p > blendOutStart) {
         const blend = smootherstep(blendOutStart, blendOutEnd, p)
-        const overridePos = targetPos.clone()
-        const overrideLook = targetLook.clone()
-        targetPos.lerpVectors(overridePos, splinePos, blend)
-        targetLook.lerpVectors(overrideLook, splineLook, blend)
-      }
-    }
-
-    // Override: Social section — pan left → right → center
-    const socBlendInStart = 0.870, socBlendInEnd = 0.885
-    const socBlendOutStart = 0.920, socBlendOutEnd = 0.935
-    const socStart = 0.870, socEnd = 0.935
-
-    if (p > socStart && p < socEnd && !selectedTierRef.current) {
-      const splinePos = targetPos.clone()
-      const splineLook = targetLook.clone()
-
-      let camX: number, camY: number, camZ: number
-      let lookX: number, lookY: number, lookZ: number
-
-      if (p < 0.893) {
-        // Hold: look at LEFT text
-        camX = -1.0; camY = 1.0; camZ = -208
-        lookX = -3.6; lookY = 1.0; lookZ = -220
-      } else if (p < 0.903) {
-        // Pan LEFT → RIGHT
-        const s = smootherstep(0.893, 0.903, p)
-        camX = lerp(-1.0, 1.0, s); camY = 1.0; camZ = lerp(-208, -209, s)
-        lookX = lerp(-3.6, 3.6, s); lookY = 1.0; lookZ = -220
-      } else if (p < 0.913) {
-        // Pan RIGHT → CENTER (hologram)
-        const s = smootherstep(0.903, 0.913, p)
-        camX = lerp(1.0, 0, s); camY = lerp(1.0, 1.2, s); camZ = lerp(-209, -210, s)
-        lookX = lerp(3.6, 0, s); lookY = lerp(1.0, 1.2, s); lookZ = lerp(-220, -224, s)
-      } else {
-        // Hold center, blend-out handles exit
-        camX = 0; camY = 1.2; camZ = -210
-        lookX = 0; lookY = 1.2; lookZ = -224
-      }
-
-      targetPos.set(camX, camY, camZ)
-      targetLook.set(lookX, lookY, lookZ)
-
-      // Blend-in from spline
-      if (p < socBlendInEnd) {
-        const blend = smootherstep(socBlendInStart, socBlendInEnd, p)
-        targetPos.lerpVectors(splinePos, targetPos, blend)
-        targetLook.lerpVectors(splineLook, targetLook, blend)
-      }
-      // Blend-out to spline
-      else if (p > socBlendOutStart) {
-        const blend = smootherstep(socBlendOutStart, socBlendOutEnd, p)
         const overridePos = targetPos.clone()
         const overrideLook = targetLook.clone()
         targetPos.lerpVectors(overridePos, splinePos, blend)
